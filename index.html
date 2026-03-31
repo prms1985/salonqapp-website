@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SalonQ — India's first AI-powered salon queue management platform. Skip the wait, join remotely, get ETA alerts. For customers and salon owners across India.">
+<meta name="keywords" content="salon queue app India, salon booking app, SalonQ, ZW Technologies, salon management software India">
+<meta property="og:title" content="SalonQ — Zero Wait. Every Salon.">
+<meta property="og:description" content="Join queues remotely. Get AI-powered ETA alerts. Never wait at a salon again.">
+<meta property="og:url" content="https://salonqapp.in">
+<meta property="og:type" content="website">
+<title>SalonQ — Zero Wait. Every Salon. | India's AI Queue Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   RESET & ROOT
+═══════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* Core palette */
+  --ink:#080A12;
+  --ink2:#0E1120;
+  --ink3:#161929;
+  --ink4:#202438;
+  --ink5:#2A2E48;
+  /* Accents */
+  --gold:#E8993A;
+  --gold2:#F5A623;
+  --gold-soft:rgba(232,153,58,0.12);
+  --gold-glow:rgba(232,153,58,0.28);
+  --teal:#0ECFB0;
+  --teal-soft:rgba(14,207,176,0.1);
+  --rose:#FF6B8A;
+  --violet:#8B5CF6;
+  /* Text */
+  --text:#E4E7F5;
+  --text2:#B8BDD6;
+  --text3:#737899;
+  --text4:#4A4F6E;
+  /* Borders */
+  --line:rgba(255,255,255,0.06);
+  --line2:rgba(255,255,255,0.1);
+  --line3:rgba(255,255,255,0.16);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:var(--ink5);border-radius:2px}
+
+/* ═══════════════════════════════════════
+   TYPOGRAPHY SYSTEM
+═══════════════════════════════════════ */
+.t-display{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-0.03em;line-height:1.05}
+.t-head{font-family:'Syne',sans-serif;font-weight:700;letter-spacing:-0.02em;line-height:1.1}
+.t-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3)}
+.t-mono{font-family:'DM Mono',monospace}
+.c-gold{color:var(--gold2)}
+.c-teal{color:var(--teal)}
+.c-muted{color:var(--text3)}
+
+/* ═══════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════ */
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+.wrap-sm{max-width:760px;margin:0 auto;padding:0 28px}
+.sec{padding:112px 0}
+.sec-sm{padding:72px 0}
+
+/* ═══════════════════════════════════════
+   GRADIENTS & BACKGROUNDS
+═══════════════════════════════════════ */
+.grad-text{
+  background:linear-gradient(135deg,var(--gold2) 0%,#FFD166 40%,var(--teal) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.grad-text-gold{
+  background:linear-gradient(90deg,var(--gold2),#FFB347);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* ═══════════════════════════════════════
+   ANIMATION SYSTEM
+═══════════════════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes marqueeScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes barPulse{0%,100%{width:62%}50%{width:72%}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes ripple{0%{transform:scale(1);opacity:.6}100%{transform:scale(2.2);opacity:0}}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}
+.reveal-d2{transition-delay:.2s}
+.reveal-d3{transition-delay:.3s}
+.reveal-d4{transition-delay:.4s}
+.reveal-d5{transition-delay:.5s}
+
+/* ═══════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:0 28px;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(8,10,18,0.8);
+  backdrop-filter:blur(24px) saturate(180%);
+  border-bottom:1px solid var(--line);
+  transition:all .4s ease;
+}
+#nav.scrolled{background:rgba(8,10,18,0.96);box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+.nav-brand{display:flex;align-items:center;gap:12px}
+.nav-logo{height:36px;width:auto}
+.nav-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:-0.5px}
+.nav-name em{font-style:normal;color:var(--gold2)}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-links a{
+  padding:8px 14px;border-radius:8px;
+  font-size:14px;font-weight:500;color:var(--text2);
+  transition:all .2s;
+}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,0.06)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.btn-ghost-sm{
+  padding:8px 18px;border-radius:8px;
+  border:1px solid var(--line2);
+  font-size:13px;font-weight:600;color:var(--text2);
+  transition:all .2s;cursor:pointer;
+}
+.btn-ghost-sm:hover{border-color:var(--line3);color:#fff}
+.btn-cta-sm{
+  padding:9px 20px;border-radius:8px;
+  background:var(--gold2);color:#000;
+  font-size:13px;font-weight:700;
+  font-family:'Syne',sans-serif;
+  transition:all .2s;cursor:pointer;
+  box-shadow:0 0 20px var(--gold-glow);
+}
+.btn-cta-sm:hover{background:#FFB347;transform:translateY(-1px);box-shadow:0 0 32px var(--gold-glow)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.ham span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+.mob-nav{
+  display:none;position:fixed;
+  top:68px;left:0;right:0;bottom:0;
+  background:rgba(8,10,18,0.98);
+  backdrop-filter:blur(20px);
+  z-index:999;padding:32px 28px;
+  flex-direction:column;gap:4px;
+}
+.mob-nav.open{display:flex}
+.mob-nav a{
+  color:#fff;font-size:22px;
+  font-family:'Syne',sans-serif;font-weight:700;
+  padding:16px 0;border-bottom:1px solid var(--line);
+}
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding-top:68px;position:relative;overflow:hidden;
+}
+/* Animated mesh background */
+.hero-mesh{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 70% at 70% 40%,rgba(139,92,246,0.1) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 50% at 20% 65%,rgba(232,153,58,0.09) 0%,transparent 55%),
+    radial-gradient(ellipse 40% 40% at 85% 80%,rgba(14,207,176,0.06) 0%,transparent 50%);
+  pointer-events:none;
+}
+/* Grid overlay */
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.022) 1px,transparent 1px);
+  background-size:52px 52px;
+  mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 20%,transparent 100%);
+  pointer-events:none;
+}
+/* Noise grain */
+.hero-grain{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.hero-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:72px;align-items:center;
+  position:relative;z-index:2;
+  width:100%;max-width:1200px;margin:0 auto;padding:0 28px;
+}
+/* HERO LEFT */
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(14,207,176,0.08);
+  border:1px solid rgba(14,207,176,0.2);
+  border-radius:100px;padding:5px 14px;
+  font-size:12px;font-weight:600;color:var(--teal);
+  margin-bottom:24px;
+  animation:fadeIn .8s ease .2s both;
+}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+.hero h1{
+  font-size:clamp(40px,5.5vw,72px);
+  font-family:'Syne',sans-serif;font-weight:800;
+  letter-spacing:-0.03em;line-height:1.03;
+  margin-bottom:22px;
+  animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .3s both;
+}
+.hero-sub{
+  font-size:18px;color:var(--text2);
+  max-width:500px;margin-bottom:36px;
+  font-weight:300;line-height:1.75;
+  animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .45s both;
+}
+.hero-actions{
+  display:flex;gap:12px;flex-wrap:wrap;margin-bottom:44px;
+  animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .55s both;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--gold2);color:#000;
+  padding:14px 28px;border-radius:10px;
+  font-size:15px;font-weight:700;
+  font-family:'Syne',sans-serif;
+  transition:all .25s;
+  box-shadow:0 0 40px var(--gold-glow);
+  cursor:pointer;
+}
+.btn-primary:hover{background:#FFB347;transform:translateY(-2px);box-shadow:0 0 56px var(--gold-glow)}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:9px;
+  border:1px solid var(--line2);color:var(--text);
+  padding:14px 28px;border-radius:10px;
+  font-size:15px;font-weight:500;
+  transition:all .25s;cursor:pointer;
+}
+.btn-outline:hover{background:var(--ink3);border-color:var(--line3);transform:translateY(-2px)}
+.hero-trust{
+  display:flex;gap:24px;flex-wrap:wrap;
+  animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .65s both;
+}
+.trust-stat .num{
+  font-family:'Syne',sans-serif;font-size:26px;
+  font-weight:800;color:#fff;display:block;line-height:1;margin-bottom:3px;
+}
+.trust-stat .lbl{font-size:12px;color:var(--text3)}
+
+/* HERO RIGHT — Phone */
+.hero-phone{
+  position:relative;display:flex;
+  justify-content:center;align-items:center;
+  animation:fadeIn 1s ease .4s both;
+}
+.phone-glow-ring{
+  position:absolute;width:380px;height:380px;border-radius:50%;
+  background:radial-gradient(circle,rgba(139,92,246,0.18) 0%,transparent 65%);
+  animation:float 6s ease-in-out infinite;
+}
+.phone-shell{
+  position:relative;z-index:2;
+  width:265px;
+  animation:float 5s ease-in-out infinite;
+  animation-delay:.5s;
+}
+.phone-frame{
+  background:linear-gradient(160deg,#1e2138,#0e1020);
+  border:1.5px solid rgba(255,255,255,0.12);
+  border-radius:42px;padding:12px;
+  box-shadow:
+    0 48px 96px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(255,255,255,0.04),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.phone-screen{
+  background:#06080F;border-radius:32px;
+  overflow:hidden;aspect-ratio:9/19.5;
+  display:flex;flex-direction:column;
+}
+.ps-notch{width:64px;height:4px;background:#1e2138;border-radius:0 0 6px 6px;margin:0 auto 4px}
+.ps-bar{display:flex;justify-content:space-between;padding:8px 16px 4px;font-size:9px;color:#fff;font-weight:700}
+/* token card */
+.ps-card{
+  margin:4px 10px 6px;
+  background:linear-gradient(135deg,#1a1d30,#232640);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:14px;padding:11px 12px;
+}
+.ps-card-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7px}
+.ps-salon{font-size:10px;font-weight:700;color:#fff;font-family:'Syne',sans-serif;line-height:1.3}
+.ps-city{font-size:8px;color:var(--text3);margin-top:1px}
+.ps-live{
+  display:flex;align-items:center;gap:3px;
+  background:rgba(14,207,176,0.12);border:1px solid rgba(14,207,176,0.25);
+  color:var(--teal);font-size:7px;font-weight:800;
+  padding:2px 7px;border-radius:100px;
+}
+.ps-live::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--teal);animation:pulse 1.5s infinite}
+.ps-token-num{
+  font-family:'DM Mono',monospace;
+  font-size:38px;font-weight:500;
+  color:var(--gold2);line-height:1;margin-bottom:2px;
+}
+.ps-eta{font-size:9px;color:var(--text2)}
+.ps-eta span{color:var(--gold2);font-weight:700}
+.ps-prog{height:2px;background:var(--ink4);border-radius:2px;overflow:hidden;margin-top:8px}
+.ps-prog-fill{height:100%;width:65%;background:linear-gradient(90deg,var(--gold2),#FFB347);border-radius:2px;animation:barPulse 3s ease-in-out infinite}
+/* queue rows */
+.ps-queue{margin:0 10px;display:flex;flex-direction:column;gap:4px}
+.ps-qlbl{font-size:8px;color:var(--text4);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+.ps-qrow{display:flex;align-items:center;gap:6px;padding:6px 8px;background:var(--ink3);border-radius:8px;border:1px solid var(--line)}
+.ps-qn{font-family:'DM Mono',monospace;font-size:8px;color:var(--gold2);width:16px}
+.ps-qname{font-size:8px;color:#fff;font-weight:500;flex:1}
+.ps-qdot{width:5px;height:5px;border-radius:50%}
+/* notification */
+.ps-notif{
+  margin:5px 10px 0;
+  background:rgba(139,92,246,0.14);border:1px solid rgba(139,92,246,0.22);
+  border-radius:10px;padding:7px 10px;
+  display:flex;align-items:center;gap:7px;
+}
+.ps-notif-icon{font-size:13px}
+.ps-notif-body{font-size:8px;color:#C4B5FD;line-height:1.4}
+.ps-notif-body strong{color:#fff;display:block;font-size:9px;margin-bottom:1px}
+/* floating chips */
+.fchip{
+  position:absolute;background:var(--ink2);
+  border:1px solid var(--line2);border-radius:12px;
+  padding:8px 12px;box-shadow:0 8px 28px rgba(0,0,0,0.5);
+  animation:float 4s ease-in-out infinite;z-index:3;
+  white-space:nowrap;
+}
+.fchip.c1{top:4%;left:-30%;animation-delay:0s}
+.fchip.c2{top:42%;right:-30%;animation-delay:1.3s}
+.fchip.c3{bottom:14%;left:-22%;animation-delay:2.6s;display:flex;align-items:center;gap:8px}
+.fchip-big{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--gold2);line-height:1}
+.fchip-lbl{font-size:9px;color:var(--text3);margin-top:2px}
+
+/* ═══════════════════════════════════════
+   MARQUEE
+═══════════════════════════════════════ */
+.marquee-sec{
+  padding:20px 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:var(--ink2);overflow:hidden;
+}
+.mq-label{text-align:center;padding-bottom:16px;font-size:11px;color:var(--text4);text-transform:uppercase;letter-spacing:2px}
+.mq-track{display:flex;gap:48px;animation:marqueeScroll 28s linear infinite}
+.mq-track:hover{animation-play-state:paused}
+.mq-item{display:flex;align-items:center;gap:9px;white-space:nowrap;font-size:13px;color:var(--text2);font-weight:500;flex-shrink:0}
+
+/* ═══════════════════════════════════════
+   SECTION HEADERS
+═══════════════════════════════════════ */
+.sh{margin-bottom:56px}
+.sh-center{text-align:center}
+.sh-center .sec-sub{margin:0 auto}
+.sec-eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:11px;font-weight:700;text-transform:uppercase;
+  letter-spacing:0.12em;color:var(--gold2);
+  margin-bottom:14px;
+}
+.sec-eyebrow::before{content:'';width:20px;height:1px;background:var(--gold2)}
+.sec-eyebrow::after{content:'';width:20px;height:1px;background:var(--gold2)}
+.sec-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(30px,4vw,48px);
+  font-weight:800;letter-spacing:-0.025em;
+  margin-bottom:14px;color:#fff;line-height:1.1;
+}
+.sec-sub{font-size:17px;color:var(--text2);font-weight:300;max-width:560px;line-height:1.75}
+
+/* ═══════════════════════════════════════
+   HOW IT WORKS
+═══════════════════════════════════════ */
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:60px}
+.how-steps{display:flex;flex-direction:column}
+.step{
+  display:flex;gap:18px;padding:22px 0;
+  border-bottom:1px solid var(--line);
+  cursor:pointer;transition:all .2s;
+}
+.step:last-child{border-bottom:none}
+.step:hover .step-body h3{color:var(--gold2)}
+.step-n{
+  width:36px;height:36px;border-radius:10px;flex-shrink:0;
+  background:var(--ink3);border:1px solid var(--line2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Mono',monospace;font-size:12px;color:var(--gold2);
+  transition:all .2s;
+}
+.step:hover .step-n{background:var(--gold-soft);border-color:rgba(232,153,58,0.3)}
+.step-body h3{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:5px;transition:color .2s}
+.step-body p{font-size:13px;color:var(--text2);line-height:1.65}
+/* queue viz */
+.qvis{background:var(--ink2);border:1px solid var(--line);border-radius:20px;padding:26px;position:relative;overflow:hidden}
+.qvis::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(232,153,58,0.07) 0%,transparent 70%)}
+.qvis-title{font-size:11px;font-weight:700;color:var(--text4);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
+.qrow{display:flex;align-items:center;gap:11px;padding:11px 13px;background:var(--ink3);border-radius:10px;border:1px solid var(--line);margin-bottom:8px;transition:all .3s}
+.qrow:last-child{margin-bottom:0}
+.qrow.active{background:rgba(232,153,58,0.07);border-color:rgba(232,153,58,0.2)}
+.qrow-tok{width:32px;height:32px;border-radius:8px;background:var(--ink4);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--gold2);flex-shrink:0}
+.qrow.active .qrow-tok{background:rgba(232,153,58,0.14)}
+.qrow-info{flex:1}
+.qrow-name{font-size:12px;font-weight:600;color:#fff;margin-bottom:2px}
+.qrow-svc{font-size:10px;color:var(--text3)}
+.qrow-eta{text-align:right}
+.qrow-eta-v{font-size:12px;font-weight:700;color:var(--gold2);font-family:'DM Mono',monospace}
+.qrow-eta-l{font-size:9px;color:var(--text4)}
+.qrow-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.ai-insight{margin-top:14px;background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.16);border-radius:10px;padding:11px 13px;display:flex;gap:9px;align-items:center}
+.ai-icon{font-size:18px}
+.ai-text{font-size:11px;color:#C4B5FD;line-height:1.5}
+.ai-text strong{color:#fff;display:block;font-size:12px;margin-bottom:2px}
+
+/* ═══════════════════════════════════════
+   DUAL CTA — CUSTOMERS & OWNERS
+═══════════════════════════════════════ */
+.dual-sec{background:var(--ink2);padding:112px 0}
+.dual-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:60px;border-radius:0;overflow:hidden}
+.dc{padding:48px 44px;position:relative;overflow:hidden}
+.dc-cust{background:linear-gradient(145deg,#0E1120,#121530)}
+.dc-owner{background:linear-gradient(145deg,#0A0E1C,#0D1228)}
+.dc::before{content:'';position:absolute;top:-80px;right:-80px;width:240px;height:240px;border-radius:50%;opacity:.06}
+.dc-cust::before{background:var(--violet)}
+.dc-owner::before{background:var(--gold2)}
+.dc-icon{width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
+.dc-cust .dc-icon{background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.22)}
+.dc-owner .dc-icon{background:var(--gold-soft);border:1px solid rgba(232,153,58,0.22)}
+.dc-role{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;display:block}
+.dc-cust .dc-role{color:var(--violet)}
+.dc-owner .dc-role{color:var(--gold2)}
+.dc h3{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#fff;margin-bottom:12px;letter-spacing:-0.5px}
+.dc p{font-size:14px;color:var(--text2);line-height:1.75;margin-bottom:22px}
+.dc-feats{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:28px}
+.dc-feats li{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--text)}
+.dc-feats li span{width:18px;height:18px;border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.dc-cust .dc-feats li span{background:rgba(139,92,246,0.14);color:#A78BFA}
+.dc-owner .dc-feats li span{background:var(--gold-soft);color:var(--gold2)}
+/* App download buttons */
+.dl-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.dl-btn{
+  display:flex;align-items:center;gap:10px;
+  background:var(--ink4);border:1px solid var(--line2);
+  border-radius:10px;padding:10px 16px;
+  transition:all .2s;min-width:138px;cursor:pointer;
+}
+.dl-btn:hover{background:var(--ink5);border-color:var(--line3);transform:translateY(-2px)}
+.dl-btn-icon{font-size:22px;flex-shrink:0}
+.dl-btn-sub{font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:1px}
+.dl-btn-name{font-size:13px;font-weight:600;color:#fff;font-family:'Syne',sans-serif}
+.soon-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(14,207,176,0.07);border:1px dashed rgba(14,207,176,0.25);
+  border-radius:8px;padding:7px 13px;font-size:11px;color:var(--teal);font-weight:600;
+}
+/* Salon contact box */
+.contact-box{
+  background:var(--ink3);border:1px solid var(--line2);
+  border-radius:10px;padding:12px 15px;
+  display:flex;align-items:center;gap:10px;margin-top:12px;
+}
+.cb-icon{font-size:18px;flex-shrink:0}
+.cb-text{font-size:11px;color:var(--text2)}
+.cb-text strong{display:block;color:#fff;font-size:12px;margin-bottom:2px}
+.cb-link{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold2)}
+
+/* ═══════════════════════════════════════
+   FEATURES
+═══════════════════════════════════════ */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
+.fc{
+  background:var(--ink2);border:1px solid var(--line);
+  border-radius:18px;padding:26px;
+  transition:all .35s;position:relative;overflow:hidden;
+  cursor:default;
+}
+.fc::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(232,153,58,0.05) 0%,transparent 60%);
+  opacity:0;transition:opacity .35s;
+}
+.fc:hover{border-color:rgba(232,153,58,0.18);transform:translateY(-5px);box-shadow:0 24px 56px rgba(0,0,0,0.35)}
+.fc:hover::after{opacity:1}
+.fc-icon{
+  width:46px;height:46px;border-radius:13px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:21px;margin-bottom:16px;
+  background:var(--ink3);border:1px solid var(--line2);
+}
+.fc h3{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:8px}
+.fc p{font-size:13px;color:var(--text2);line-height:1.65}
+.fc-pill{
+  display:inline-block;margin-top:14px;
+  font-size:10px;font-weight:700;
+  padding:3px 10px;border-radius:100px;
+  background:var(--gold-soft);color:var(--gold2);
+}
+
+/* ═══════════════════════════════════════
+   STATS
+═══════════════════════════════════════ */
+.stats-band{
+  background:linear-gradient(135deg,var(--ink2) 0%,var(--ink3) 100%);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:72px 0;
+}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.stat-card{
+  text-align:center;padding:28px 16px;
+  background:var(--ink2);border:1px solid var(--line);
+  border-radius:16px;transition:all .3s;
+}
+.stat-card:hover{border-color:rgba(232,153,58,0.2);transform:translateY(-3px)}
+.stat-num{
+  font-family:'Syne',sans-serif;font-size:44px;
+  font-weight:800;line-height:1;margin-bottom:6px;
+}
+.stat-lbl{font-size:13px;color:var(--text3)}
+
+/* ═══════════════════════════════════════
+   PRICING
+═══════════════════════════════════════ */
+.pricing-sec{background:var(--ink2);padding:112px 0}
+.pricing-toggle{
+  display:flex;align-items:center;justify-content:center;
+  gap:12px;margin-bottom:52px;
+}
+.toggle-lbl{font-size:14px;color:var(--text2);font-weight:500}
+.toggle-btn{
+  position:relative;width:44px;height:24px;
+  background:var(--ink4);border-radius:100px;
+  cursor:pointer;border:1px solid var(--line2);
+  transition:background .3s;
+}
+.toggle-btn.on{background:var(--gold2)}
+.toggle-knob{
+  position:absolute;top:2px;left:2px;
+  width:18px;height:18px;border-radius:50%;
+  background:#fff;transition:transform .3s;
+}
+.toggle-btn.on .toggle-knob{transform:translateX(20px)}
+.save-badge{
+  background:rgba(14,207,176,0.12);border:1px solid rgba(14,207,176,0.22);
+  color:var(--teal);font-size:11px;font-weight:700;
+  padding:2px 10px;border-radius:100px;
+}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+.pc{
+  background:var(--ink);border:1px solid var(--line);
+  border-radius:20px;padding:30px;transition:all .3s;
+  position:relative;
+}
+.pc:hover{transform:translateY(-4px);box-shadow:0 28px 64px rgba(0,0,0,0.4)}
+.pc.featured{
+  border-color:rgba(232,153,58,0.3);
+  background:linear-gradient(160deg,#0F1225,#131730);
+  transform:translateY(-8px);
+  box-shadow:0 32px 72px rgba(232,153,58,0.08);
+}
+.pc.featured:hover{transform:translateY(-12px)}
+.pc-badge{
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  background:var(--gold2);color:#000;
+  font-size:10px;font-weight:800;padding:4px 14px;
+  border-radius:100px;font-family:'Syne',sans-serif;
+  text-transform:uppercase;letter-spacing:1px;white-space:nowrap;
+}
+.pc-plan{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:8px}
+.pc-price{display:flex;align-items:baseline;gap:3px;margin-bottom:4px}
+.pc-rs{font-size:20px;font-weight:700;color:var(--gold2);font-family:'Syne',sans-serif}
+.pc-amount{font-size:48px;font-weight:800;color:#fff;font-family:'Syne',sans-serif;letter-spacing:-2px;line-height:1}
+.pc-period{font-size:14px;color:var(--text3)}
+.pc-desc{font-size:12px;color:var(--text3);margin-bottom:18px}
+.pc-div{height:1px;background:var(--line);margin:18px 0}
+.pc-feats{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:24px}
+.pc-feats li{display:flex;align-items:flex-start;gap:9px;font-size:12px;color:var(--text)}
+.pf-y{color:var(--teal);flex-shrink:0;margin-top:1px}
+.pf-n{color:var(--text4);flex-shrink:0;margin-top:1px}
+.btn-pc{
+  display:block;text-align:center;padding:12px;
+  border-radius:10px;font-size:13px;font-weight:700;
+  font-family:'Syne',sans-serif;transition:all .2s;cursor:pointer;
+}
+.btn-pc-out{border:1px solid var(--line2);color:#fff}
+.btn-pc-out:hover{background:var(--ink3);border-color:var(--line3)}
+.btn-pc-fill{background:var(--gold2);color:#000;box-shadow:0 0 24px rgba(232,153,58,0.22)}
+.btn-pc-fill:hover{background:#FFB347;transform:translateY(-1px)}
+.pc-note{text-align:center;margin-top:28px;font-size:13px;color:var(--text3)}
+.pc-note strong{color:var(--text2)}
+
+/* Pricing comparison table */
+.price-compare{margin-top:60px}
+.pct-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:20px;text-align:center}
+.pct-wrap{background:var(--ink);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.pct-table{width:100%;border-collapse:collapse;font-size:13px}
+.pct-table th{background:var(--ink3);padding:12px 16px;text-align:left;font-weight:700;color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--line)}
+.pct-table th:first-child{width:40%}
+.pct-table td{padding:11px 16px;border-bottom:1px solid var(--line);color:var(--text2);vertical-align:middle}
+.pct-table tr:last-child td{border-bottom:none}
+.pct-table tr:hover td{background:rgba(255,255,255,0.015)}
+.pct-table td:first-child{color:var(--text);font-weight:500}
+.pct-check{color:var(--teal);font-size:15px}
+.pct-cross{color:var(--text4);font-size:15px}
+.pct-hl td{background:rgba(232,153,58,0.04)!important}
+.pct-hl td:first-child{color:var(--gold2)!important;font-weight:700}
+
+/* ═══════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════ */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
+.tcard{
+  background:var(--ink2);border:1px solid var(--line);
+  border-radius:18px;padding:26px;transition:all .3s;
+}
+.tcard:hover{border-color:var(--line2);transform:translateY(-3px)}
+.tc-stars{color:var(--gold2);font-size:14px;margin-bottom:12px;letter-spacing:1px}
+.tc-quote{font-size:22px;color:var(--gold-soft);font-family:'Syne',sans-serif;margin-bottom:8px;line-height:1}
+.tc-text{font-size:13px;color:var(--text2);line-height:1.75;margin-bottom:18px}
+.tc-author{display:flex;align-items:center;gap:11px}
+.tc-av{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;font-family:'Syne',sans-serif;color:#fff;flex-shrink:0}
+.tc-name{font-size:13px;font-weight:700;color:#fff}
+.tc-role{font-size:11px;color:var(--text3)}
+
+/* ═══════════════════════════════════════
+   FAQ
+═══════════════════════════════════════ */
+.faq-sec{background:var(--ink2);padding:112px 0}
+.faq-wrap{max-width:700px;margin:52px auto 0}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 0;cursor:pointer;
+  font-size:15px;font-weight:600;color:#fff;
+  transition:color .2s;
+}
+.faq-q:hover{color:var(--gold2)}
+.faq-icon{
+  width:26px;height:26px;border-radius:7px;
+  background:var(--ink3);border:1px solid var(--line2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;color:var(--gold2);
+  flex-shrink:0;transition:all .3s;line-height:1;
+}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--gold-soft);border-color:rgba(232,153,58,0.3)}
+.faq-a{font-size:14px;color:var(--text2);line-height:1.75;padding:0 0 20px;display:none}
+.faq-item.open .faq-a{display:block}
+
+/* ═══════════════════════════════════════
+   CTA BANNER
+═══════════════════════════════════════ */
+.cta-sec{
+  padding:128px 0;position:relative;
+  overflow:hidden;text-align:center;
+}
+.cta-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 70% at 50% 50%,rgba(139,92,246,0.1) 0%,transparent 60%),
+    radial-gradient(ellipse 30% 30% at 15% 85%,rgba(232,153,58,0.07) 0%,transparent 55%),
+    radial-gradient(ellipse 25% 25% at 85% 15%,rgba(14,207,176,0.05) 0%,transparent 50%);
+}
+.cta-grid-bg{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);
+  background-size:52px 52px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 100%);
+}
+.cta-sec h2{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(34px,5vw,64px);
+  font-weight:800;letter-spacing:-0.025em;
+  margin-bottom:18px;position:relative;z-index:2;
+}
+.cta-sub{font-size:18px;color:var(--text2);margin-bottom:36px;position:relative;z-index:2;max-width:480px;margin-left:auto;margin-right:auto}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:2}
+.cta-note{margin-top:22px;font-size:13px;color:var(--text3);position:relative;z-index:2}
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer{background:var(--ink2);border-top:1px solid var(--line);padding:64px 0 32px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.foot-brand{}
+.foot-logo{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.foot-logo img{height:30px}
+.foot-logo span{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;color:#fff}
+.foot-logo span em{font-style:normal;color:var(--gold2)}
+.foot-desc{font-size:13px;color:var(--text3);line-height:1.75;max-width:268px;margin-bottom:20px}
+.foot-contact{font-size:13px;color:var(--text2)}
+.foot-contact a{color:var(--gold2)}
+.foot-col h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--text4);margin-bottom:14px}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.foot-col ul li a{font-size:13px;color:var(--text2);transition:color .2s}
+.foot-col ul li a:hover{color:#fff}
+.foot-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:28px;border-top:1px solid var(--line);flex-wrap:wrap;gap:12px;
+}
+.foot-bottom p{font-size:12px;color:var(--text4)}
+.foot-bottom p span{color:var(--gold2)}
+.foot-legal{display:flex;gap:20px}
+.foot-legal a{font-size:12px;color:var(--text4);transition:color .2s}
+.foot-legal a:hover{color:var(--text2)}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media(max-width:1100px){
+  .hero-inner{grid-template-columns:1fr;gap:48px}
+  .hero-phone{order:-1}
+  .phone-shell{width:200px}
+  .fchip{display:none}
+  .how-grid{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .price-grid{grid-template-columns:1fr}
+  .pc.featured{transform:none}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .dual-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-links,.nav-right{display:none}
+  .ham{display:flex}
+  .sec{padding:72px 0}
+  .hero{min-height:auto;padding:88px 0 60px}
+  .feat-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+  .foot-grid{grid-template-columns:1fr}
+  .foot-bottom{flex-direction:column;text-align:center}
+  .dl-btns{flex-direction:column}
+  .hero-trust{gap:16px}
+  .cta-btns{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav id="nav">
+  <div class="nav-brand">
+    <img src="logo.png" alt="SalonQ" class="nav-logo">
+    <span class="nav-name">salon<em>Q</em></span>
+  </div>
+  <div class="nav-links">
+    <a href="#how">How it Works</a>
+    <a href="#for-salons">For Salons</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <div class="nav-right">
+    <a href="#for-salons" class="btn-ghost-sm">List Your Salon</a>
+    <a href="#download" class="btn-cta-sm">Get the App</a>
+  </div>
+  <div class="ham" id="ham" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mob-nav" id="mobNav">
+  <a href="#how" onclick="toggleNav()">How it Works</a>
+  <a href="#for-salons" onclick="toggleNav()">For Salons</a>
+  <a href="#features" onclick="toggleNav()">Features</a>
+  <a href="#pricing" onclick="toggleNav()">Pricing</a>
+  <a href="#faq" onclick="toggleNav()">FAQ</a>
+  <a href="#download" onclick="toggleNav()" style="color:var(--gold2)">Download App →</a>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-inner">
+    <!-- LEFT -->
+    <div>
+      <div class="hero-eyebrow">
+        <span class="hero-dot"></span>
+        Live in Tamil Nadu · Expanding across India
+      </div>
+      <h1>
+        Your salon.<br>
+        <span class="grad-text">Zero wait.</span><br>
+        Every time.
+      </h1>
+      <p class="hero-sub">
+        India's first AI-powered salon queue platform. Join the queue from anywhere, track your position live, and walk in exactly when your turn arrives.
+      </p>
+      <div class="hero-actions">
+        <a href="#download" class="btn-primary">
+          <span>📱</span> Download the App
+        </a>
+        <a href="#for-salons" class="btn-outline">
+          <span>💼</span> For Salon Owners
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-stat">
+          <span class="num grad-text-gold">7M+</span>
+          <span class="lbl">Salons in India</span>
+        </div>
+        <div class="trust-stat">
+          <span class="num grad-text-gold">₹0</span>
+          <span class="lbl">Per notification</span>
+        </div>
+        <div class="trust-stat">
+          <span class="num grad-text-gold">94%</span>
+          <span class="lbl">ETA accuracy</span>
+        </div>
+      </div>
+    </div>
+    <!-- RIGHT — Phone -->
+    <div class="hero-phone">
+      <div class="phone-glow-ring"></div>
+      <div class="fchip c1">
+        <div class="fchip-big">~22 min</div>
+        <div class="fchip-lbl">AI Wait Estimate</div>
+      </div>
+      <div class="fchip c2">
+        <div class="fchip-big">94%</div>
+        <div class="fchip-lbl">ETA Confidence</div>
+      </div>
+      <div class="fchip c3">
+        <span style="font-size:18px">🔔</span>
+        <div>
+          <div style="font-size:11px;font-weight:700;color:#fff">Your turn in 15 min!</div>
+          <div style="font-size:9px;color:var(--text3)">Head back now · Token #08</div>
+        </div>
+      </div>
+      <div class="phone-shell">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="ps-notch"></div>
+            <div class="ps-bar"><span>9:41</span><span>●●● 🔋</span></div>
+            <div class="ps-card">
+              <div class="ps-card-row">
+                <div>
+                  <div class="ps-salon">Ravi's Salon</div>
+                  <div class="ps-city">Erode, Tamil Nadu</div>
+                </div>
+                <div class="ps-live">LIVE</div>
+              </div>
+              <div class="ps-token-num">#08</div>
+              <div class="ps-eta">Ready in <span>~22 mins</span> · 3 ahead</div>
+              <div class="ps-prog"><div class="ps-prog-fill"></div></div>
+            </div>
+            <div class="ps-queue">
+              <div class="ps-qlbl">Live Queue</div>
+              <div class="ps-qrow"><div class="ps-qn">#05</div><div class="ps-qname">Karthik M.</div><div class="ps-qdot" style="background:var(--teal)"></div></div>
+              <div class="ps-qrow"><div class="ps-qn">#06</div><div class="ps-qname">Arun K.</div><div class="ps-qdot" style="background:var(--gold2)"></div></div>
+              <div class="ps-qrow"><div class="ps-qn">#07</div><div class="ps-qname">Vikram S.</div><div class="ps-qdot" style="background:var(--ink5)"></div></div>
+            </div>
+            <div class="ps-notif">
+              <div class="ps-notif-icon">🔔</div>
+              <div class="ps-notif-body">
+                <strong>Your turn in ~15 min!</strong>
+                Head back · Token #08 · Ravi's Salon
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MARQUEE ══════════ -->
+<div class="marquee-sec">
+  <p class="mq-label">Trusted by salons across Tamil Nadu</p>
+  <div class="mq-track">
+    <div class="mq-item"><span>✂️</span> Ravi's Unisex Salon</div>
+    <div class="mq-item"><span>💇</span> Green Cuts Parlour</div>
+    <div class="mq-item"><span>✨</span> Star Beauty Studio</div>
+    <div class="mq-item"><span>✂️</span> Style Hub Erode</div>
+    <div class="mq-item"><span>💆</span> Royal Gents Salon</div>
+    <div class="mq-item"><span>💅</span> Priya Beauty Care</div>
+    <div class="mq-item"><span>✂️</span> Modern Cuts Salem</div>
+    <div class="mq-item"><span>🌟</span> Glamour Studio</div>
+    <div class="mq-item"><span>✂️</span> Ravi's Unisex Salon</div>
+    <div class="mq-item"><span>💇</span> Green Cuts Parlour</div>
+    <div class="mq-item"><span>✨</span> Star Beauty Studio</div>
+    <div class="mq-item"><span>✂️</span> Style Hub Erode</div>
+    <div class="mq-item"><span>💆</span> Royal Gents Salon</div>
+    <div class="mq-item"><span>💅</span> Priya Beauty Care</div>
+    <div class="mq-item"><span>✂️</span> Modern Cuts Salem</div>
+    <div class="mq-item"><span>🌟</span> Glamour Studio</div>
+  </div>
+</div>
+
+<!-- ══════════ HOW IT WORKS ══════════ -->
+<section class="sec" id="how">
+  <div class="wrap">
+    <div class="sh reveal">
+      <div class="sec-eyebrow">How It Works</div>
+      <h2 class="sec-title">From chaos to <span class="grad-text">zero wait</span> in 4 steps</h2>
+      <p class="sec-sub">No more sitting in a crowded salon for 45 minutes. Join remotely and arrive exactly when your turn is near.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-steps reveal">
+        <div class="step">
+          <div class="step-n">01</div>
+          <div class="step-body">
+            <h3>Discover & join your queue</h3>
+            <p>Open SalonQ, find nearby salons with live wait times on the map. Scan the QR code at the entrance or join remotely from home.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">02</div>
+          <div class="step-body">
+            <h3>Get AI-powered wait time</h3>
+            <p>Our AI analyses queue depth, staff speed multipliers, and 30 previous service logs to give you an accurate ETA with confidence %.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">03</div>
+          <div class="step-body">
+            <h3>Live your life, get notified</h3>
+            <p>Leave the salon. Shop, eat, relax. Get a free push notification when your turn is 15 minutes away — zero WhatsApp charges.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">04</div>
+          <div class="step-body">
+            <h3>Walk in, get served instantly</h3>
+            <p>Arrive at exactly the right time. Scan the QR to confirm arrival and get served without waiting a single extra minute.</p>
+          </div>
+        </div>
+      </div>
+      <div class="qvis reveal reveal-d2">
+        <div class="qvis-title">Live Queue · Ravi's Salon · Erode</div>
+        <div class="qrow active">
+          <div class="qrow-tok">#05</div>
+          <div class="qrow-info"><div class="qrow-name">Karthik M.</div><div class="qrow-svc">Haircut · In Progress</div></div>
+          <div class="qrow-eta"><div class="qrow-eta-v">Now</div><div class="qrow-eta-l">serving</div></div>
+          <div class="qrow-dot" style="background:var(--teal);box-shadow:0 0 8px rgba(14,207,176,0.5)"></div>
+        </div>
+        <div class="qrow">
+          <div class="qrow-tok">#06</div>
+          <div class="qrow-info"><div class="qrow-name">Arun K.</div><div class="qrow-svc">Haircut + Beard</div></div>
+          <div class="qrow-eta"><div class="qrow-eta-v">8m</div><div class="qrow-eta-l">eta</div></div>
+          <div class="qrow-dot" style="background:var(--gold2)"></div>
+        </div>
+        <div class="qrow">
+          <div class="qrow-tok">#07</div>
+          <div class="qrow-info"><div class="qrow-name">Vikram S.</div><div class="qrow-svc">Head Massage</div></div>
+          <div class="qrow-eta"><div class="qrow-eta-v">18m</div><div class="qrow-eta-l">eta</div></div>
+          <div class="qrow-dot" style="background:var(--ink5)"></div>
+        </div>
+        <div class="qrow">
+          <div class="qrow-tok">#08</div>
+          <div class="qrow-info"><div class="qrow-name">You</div><div class="qrow-svc">Haircut + Shave</div></div>
+          <div class="qrow-eta"><div class="qrow-eta-v">22m</div><div class="qrow-eta-l">eta</div></div>
+          <div class="qrow-dot" style="background:var(--violet)"></div>
+        </div>
+        <div class="ai-insight">
+          <div class="ai-icon">🤖</div>
+          <div class="ai-text"><strong>AI Prediction · 94% confidence</strong>Based on 847 historical service logs for this salon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOR CUSTOMERS + OWNERS ══════════ -->
+<section class="dual-sec" id="for-salons">
+  <div class="wrap">
+    <div class="sh sh-center reveal">
+      <div class="sec-eyebrow">Two Apps. One Platform.</div>
+      <h2 class="sec-title">Built for <span class="grad-text">everyone</span> in the salon</h2>
+      <p class="sec-sub">Whether you are a customer waiting for a trim or an owner running a busy salon — SalonQ has a dedicated experience for you.</p>
+    </div>
+    <div class="dual-grid">
+      <!-- CUSTOMER -->
+      <div class="dc dc-cust reveal" id="download">
+        <div class="dc-icon">👆</div>
+        <span class="dc-role">For Customers</span>
+        <h3>Skip the Wait</h3>
+        <p>Join any SalonQ salon queue remotely. Track your live position. Get notified when your turn is near. Walk in and get served instantly — no more wasted time.</p>
+        <ul class="dc-feats">
+          <li><span>✓</span>Find nearby salons with live wait times</li>
+          <li><span>✓</span>Join queue via QR scan or app</li>
+          <li><span>✓</span>AI-powered ETA with confidence %</li>
+          <li><span>✓</span>Free push notifications — no WhatsApp fees</li>
+          <li><span>✓</span>Live queue tracking on interactive map</li>
+          <li><span>✓</span>Service history and booking records</li>
+        </ul>
+        <div class="dl-btns">
+          <a href="#" class="dl-btn">
+            <span class="dl-btn-icon">🤖</span>
+            <div><div class="dl-btn-sub">Download on</div><div class="dl-btn-name">Google Play</div></div>
+          </a>
+          <a href="#" class="dl-btn">
+            <span class="dl-btn-icon">🍎</span>
+            <div><div class="dl-btn-sub">Download on</div><div class="dl-btn-name">App Store</div></div>
+          </a>
+        </div>
+        <div class="soon-tag" style="margin-top:12px">🚀 &nbsp;Launching soon — register your interest below</div>
+      </div>
+      <!-- OWNER -->
+      <div class="dc dc-owner reveal reveal-d2">
+        <div class="dc-icon">👑</div>
+        <span class="dc-role">For Salon Owners</span>
+        <h3>Manage Smarter</h3>
+        <p>Complete operations dashboard. Manage live queues, track staff performance, view revenue analytics, and grow your salon with data-driven insights.</p>
+        <ul class="dc-feats">
+          <li><span>✓</span>Live queue management dashboard</li>
+          <li><span>✓</span>AI staff assignment & lock screen timer</li>
+          <li><span>✓</span>Walk-in customer management</li>
+          <li><span>✓</span>Revenue & performance analytics</li>
+          <li><span>✓</span>Token transfer between staff</li>
+          <li><span>✓</span>Razorpay-powered GST billing</li>
+        </ul>
+        <div class="dl-btns">
+          <a href="#" class="dl-btn">
+            <span class="dl-btn-icon">🤖</span>
+            <div><div class="dl-btn-sub">Business App on</div><div class="dl-btn-name">Google Play</div></div>
+          </a>
+        </div>
+        <div class="contact-box" style="margin-top:12px">
+          <span class="cb-icon">🔗</span>
+          <div class="cb-text">
+            <strong>List your salon on SalonQ</strong>
+            Get discovered by thousands of customers near you
+            <br><a href="mailto:parameswaran@salonqapp.in" class="cb-link">parameswaran@salonqapp.in</a>
+          </div>
+        </div>
+        <a href="#pricing" class="btn-primary" style="margin-top:20px;display:inline-flex;font-size:14px;padding:12px 22px">View Pricing Plans →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FEATURES ══════════ -->
+<section class="sec" id="features">
+  <div class="wrap">
+    <div class="sh sh-center reveal">
+      <div class="sec-eyebrow">Platform Features</div>
+      <h2 class="sec-title">Built ground-up for<br><span class="grad-text">India's salons</span></h2>
+      <p class="sec-sub">Every feature is designed for the specific realities of Indian salon operations — from OEM Android devices to UPI payments.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="fc reveal"><div class="fc-icon">🤖</div><h3>AI ETA Engine</h3><p>Weighted moving average across the last 30 service logs per staff. Confidence grows from 60% to 94%+ as data accumulates. Shows time ranges when uncertain.</p><span class="fc-pill">Proprietary AI</span></div>
+      <div class="fc reveal reveal-d1"><div class="fc-icon">⚡</div><h3>Real-time WebSocket</h3><p>Every queue update — join, complete, transfer — reaches all connected devices in under 40ms. Staff marks complete, customer sees it instantly.</p><span class="fc-pill">Socket.io</span></div>
+      <div class="fc reveal reveal-d2"><div class="fc-icon">🔔</div><h3>Free FCM Push Alerts</h3><p>Firebase Cloud Messaging replaces expensive WhatsApp API. Zero cost per notification. 6-step escalation ladder with SMS fallback for missed alerts.</p><span class="fc-pill">₹0 per alert</span></div>
+      <div class="fc reveal"><div class="fc-icon">📱</div><h3>Lock Screen Actions</h3><p>Staff can Start, Pause, End in 10m, and Complete service directly from the Android lock screen. No need to unlock the phone between customers.</p><span class="fc-pill">Notifee powered</span></div>
+      <div class="fc reveal reveal-d1"><div class="fc-icon">📊</div><h3>Revenue Analytics</h3><p>Daily revenue trends, staff performance tables, AI accuracy scores, and peak hour predictions. Export to CSV for your accountant.</p><span class="fc-pill">Data-driven</span></div>
+      <div class="fc reveal reveal-d2"><div class="fc-icon">🔒</div><h3>Enterprise Security</h3><p>JWT auth, TOTP 2FA for admin portal, immutable audit logs, Razorpay PCI compliance, and DPDPA 2023 compliant data storage in Mumbai.</p><span class="fc-pill">Bank-grade</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ STATS ══════════ -->
+<div class="stats-band">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat-card reveal"><div class="stat-num grad-text-gold">7M+</div><div class="stat-lbl">Salons in India</div></div>
+      <div class="stat-card reveal reveal-d1"><div class="stat-num grad-text-gold">90%</div><div class="stat-lbl">Still using manual queues</div></div>
+      <div class="stat-card reveal reveal-d2"><div class="stat-num grad-text-gold">₹0</div><div class="stat-lbl">Cost per FCM notification</div></div>
+      <div class="stat-card reveal reveal-d3"><div class="stat-num grad-text-gold">94%</div><div class="stat-lbl">AI ETA accuracy target</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PRICING ══════════ -->
+<section class="pricing-sec" id="pricing">
+  <div class="wrap">
+    <div class="sh sh-center reveal">
+      <div class="sec-eyebrow">Transparent Pricing</div>
+      <h2 class="sec-title">One plan for every<br><span class="grad-text">salon in India</span></h2>
+      <p class="sec-sub">No hidden fees. No WhatsApp notification charges. One flat monthly fee that pays for itself on day one.</p>
+    </div>
+
+    <div class="pricing-toggle">
+      <span class="toggle-lbl">Monthly</span>
+      <div class="toggle-btn" id="toggleBtn" onclick="toggleBilling()">
+        <div class="toggle-knob"></div>
+      </div>
+      <span class="toggle-lbl">Annual</span>
+      <span class="save-badge">Save 17%</span>
+    </div>
+
+    <div class="price-grid">
+      <!-- SMART -->
+      <div class="pc reveal">
+        <div class="pc-plan">Smart</div>
+        <div class="pc-price">
+          <span class="pc-rs">₹</span>
+          <span class="pc-amount" id="smart-price">299</span>
+          <span class="pc-period" id="smart-period">/month</span>
+        </div>
+        <div class="pc-desc">For small salons getting started</div>
+        <div class="pc-div"></div>
+        <ul class="pc-feats">
+          <li><span class="pf-y">✓</span>Up to 2 staff members</li>
+          <li><span class="pf-y">✓</span>Live queue management</li>
+          <li><span class="pf-y">✓</span>QR code queue join</li>
+          <li><span class="pf-y">✓</span>Free FCM push notifications</li>
+          <li><span class="pf-y">✓</span>Basic analytics dashboard</li>
+          <li><span class="pf-y">✓</span>Walk-in management</li>
+          <li><span class="pf-n">✗</span><span style="color:var(--text4)">WhatsApp alerts</span></li>
+          <li><span class="pf-n">✗</span><span style="color:var(--text4)">Advanced reports</span></li>
+        </ul>
+        <a href="mailto:parameswaran@salonqapp.in" class="btn-pc btn-pc-out">Get Started</a>
+      </div>
+      <!-- GROW (FEATURED) -->
+      <div class="pc featured reveal reveal-d1">
+        <div class="pc-badge">Most Popular</div>
+        <div class="pc-plan">Grow</div>
+        <div class="pc-price">
+          <span class="pc-rs">₹</span>
+          <span class="pc-amount" id="grow-price">599</span>
+          <span class="pc-period" id="grow-period">/month</span>
+        </div>
+        <div class="pc-desc">For growing salons with a team</div>
+        <div class="pc-div"></div>
+        <ul class="pc-feats">
+          <li><span class="pf-y">✓</span>Up to 4 staff members</li>
+          <li><span class="pf-y">✓</span>Everything in Smart</li>
+          <li><span class="pf-y">✓</span>AI staff auto-assignment</li>
+          <li><span class="pf-y">✓</span>Lock screen service timer</li>
+          <li><span class="pf-y">✓</span>Token transfer between staff</li>
+          <li><span class="pf-y">✓</span>Promotional offers & combos</li>
+          <li><span class="pf-y">✓</span>Priority customer support</li>
+          <li><span class="pf-n">✗</span><span style="color:var(--text4)">WhatsApp alerts</span></li>
+        </ul>
+        <a href="mailto:parameswaran@salonqapp.in" class="btn-pc btn-pc-fill">Start Free Trial</a>
+      </div>
+      <!-- BOSS -->
+      <div class="pc reveal reveal-d2">
+        <div class="pc-plan">Boss</div>
+        <div class="pc-price">
+          <span class="pc-rs">₹</span>
+          <span class="pc-amount" id="boss-price">699</span>
+          <span class="pc-period" id="boss-period">/month</span>
+        </div>
+        <div class="pc-desc">For established salons wanting everything</div>
+        <div class="pc-div"></div>
+        <ul class="pc-feats">
+          <li><span class="pf-y">✓</span>Unlimited staff members</li>
+          <li><span class="pf-y">✓</span>Everything in Grow</li>
+          <li><span class="pf-y">✓</span>WhatsApp alerts (opt-in)</li>
+          <li><span class="pf-y">✓</span>Advanced revenue reports</li>
+          <li><span class="pf-y">✓</span>GST-compliant invoices</li>
+          <li><span class="pf-y">✓</span>Marketplace listing</li>
+          <li><span class="pf-y">✓</span>Dedicated onboarding</li>
+          <li><span class="pf-y">✓</span>Multi-branch (coming soon)</li>
+        </ul>
+        <a href="mailto:parameswaran@salonqapp.in" class="btn-pc btn-pc-out">Contact Sales</a>
+      </div>
+    </div>
+
+    <p class="pc-note">All plans include a <strong>14-day free trial</strong> · No credit card required · Cancel anytime · Personal onboarding included</p>
+
+    <!-- Comparison Table -->
+    <div class="price-compare reveal">
+      <div class="pct-title">Compare SalonQ vs WhatsApp Notification Costs</div>
+      <div class="pct-wrap">
+        <table class="pct-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>SalonQ</th>
+              <th>WhatsApp Business API</th>
+              <th>SMS (MSG91)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Queue join notification</td><td><span class="pct-check">✓ Free (FCM)</span></td><td>₹0.60–₹1.00</td><td>₹0.20</td></tr>
+            <tr><td>ETA alert (15 min warning)</td><td><span class="pct-check">✓ Free (FCM)</span></td><td>₹0.60–₹1.00</td><td>₹0.20</td></tr>
+            <tr><td>Service complete notification</td><td><span class="pct-check">✓ Free (FCM)</span></td><td>₹0.60–₹1.00</td><td>₹0.20</td></tr>
+            <tr><td>100 customers/day (3 alerts each)</td><td><span class="pct-check">✓ ₹0/month</span></td><td>₹5,400–₹9,000/month</td><td>₹1,800/month</td></tr>
+            <tr class="pct-hl"><td>SalonQ subscription cost</td><td>₹299–₹699/month</td><td>Not a queue tool</td><td>Not a queue tool</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TESTIMONIALS ══════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sh sh-center reveal">
+      <div class="sec-eyebrow">Early Feedback</div>
+      <h2 class="sec-title">Salon owners <span class="grad-text">love it</span></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="tcard reveal">
+        <div class="tc-stars">★★★★★</div>
+        <div class="tc-quote">"</div>
+        <p class="tc-text">My customers used to leave after waiting 30 minutes. Now they get a notification and come back exactly on time. I stopped losing 5–6 customers every day.</p>
+        <div class="tc-author">
+          <div class="tc-av" style="background:linear-gradient(135deg,#7C3AED,#EC4899)">R</div>
+          <div><div class="tc-name">Ravi Kumar</div><div class="tc-role">Owner · Ravi's Unisex Salon, Erode</div></div>
+        </div>
+      </div>
+      <div class="tcard reveal reveal-d1">
+        <div class="tc-stars">★★★★★</div>
+        <div class="tc-quote">"</div>
+        <p class="tc-text">The staff timer on the lock screen is genius. My team completes services faster because they can see the countdown without even picking up their phone.</p>
+        <div class="tc-author">
+          <div class="tc-av" style="background:linear-gradient(135deg,#E8993A,#FF6B00)">P</div>
+          <div><div class="tc-name">Priya Devi</div><div class="tc-role">Owner · Priya Beauty Care, Coimbatore</div></div>
+        </div>
+      </div>
+      <div class="tcard reveal reveal-d2">
+        <div class="tc-stars">★★★★☆</div>
+        <div class="tc-quote">"</div>
+        <p class="tc-text">At ₹299 a month the pricing is unbeatable. I was spending more on WhatsApp Business messages alone. SalonQ notifications are completely free.</p>
+        <div class="tc-author">
+          <div class="tc-av" style="background:linear-gradient(135deg,#10B981,#0EA5E9)">M</div>
+          <div><div class="tc-name">Mohammed Farooq</div><div class="tc-role">Owner · Style Hub, Salem</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section class="faq-sec" id="faq">
+  <div class="wrap">
+    <div class="sh sh-center reveal">
+      <div class="sec-eyebrow">FAQ</div>
+      <h2 class="sec-title">Common questions</h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Do customers need to download the app to join a queue?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Customers can scan the QR code at the salon entrance to join the queue without downloading the app. For full features like live tracking, ETA alerts, and remote joining, they can download the SalonQ customer app from Google Play or App Store.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Why is SalonQ cheaper than WhatsApp Business notifications?<div class="faq-icon">+</div></div>
+        <div class="faq-a">SalonQ uses Firebase Cloud Messaging (FCM) for all customer notifications — completely free at ₹0 per message. WhatsApp Business API charges ₹0.60–₹1.00 per message. A busy salon sending 300 notifications per day saves ₹5,400–₹9,000 per month — more than 10× the SalonQ subscription cost.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">How accurate is the AI wait time prediction?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Our AI uses a weighted moving average of the last 30 service logs for each staff member and service type. Accuracy starts at around 60% for a new salon and grows to 94%+ as more data accumulates. We always show a confidence percentage so customers know how reliable the estimate is.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">What happens if a customer misses their notification?<div class="faq-icon">+</div></div>
+        <div class="faq-a">SalonQ has a 6-step escalation system. If the FCM push is not acknowledged within 3 minutes, an in-app banner appears the next time the customer opens the app. After 5 minutes, an SMS fallback is sent. We also specifically handle Chinese Android phones (Xiaomi, OPPO, Vivo) that block background apps with a guided battery optimisation setup at onboarding.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I manage multiple salon branches?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Multi-branch support is coming soon on the Boss plan. Currently each salon is managed as a separate entity. If you run a chain, contact us at parameswaran@salonqapp.in for enterprise pricing.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Is my data safe? Where is it stored?<div class="faq-icon">+</div></div>
+        <div class="faq-a">All customer data is stored on servers in Mumbai, India (AWS ap-south-1 region) in compliance with India's DPDPA 2023. We use HTTPS encryption in transit, encrypted storage at rest, JWT authentication, and role-based access control. We never sell your data. Read our full Privacy Policy for details.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">How do I get started as a salon owner?<div class="faq-icon">+</div></div>
+        <div class="faq-a">Email parameswaran@salonqapp.in or download the SalonQ Business app and register your salon. Our team personally onboards you — we set up the tablet at your reception, train your staff, and stay until your first 10 customers have been successfully processed through SalonQ. All included in your subscription.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section class="cta-sec">
+  <div class="cta-bg"></div>
+  <div class="cta-grid-bg"></div>
+  <div class="wrap">
+    <h2 class="reveal">Ready to eliminate<br>the wait at your salon?</h2>
+    <p class="cta-sub reveal">Join salons across Tamil Nadu already using SalonQ to delight customers and grow revenue.</p>
+    <div class="cta-btns reveal">
+      <a href="mailto:parameswaran@salonqapp.in" class="btn-primary" style="font-size:16px;padding:16px 32px">📩 List Your Salon Free</a>
+      <a href="#download" class="btn-outline" style="font-size:16px;padding:16px 32px">📱 Download Customer App</a>
+    </div>
+    <p class="cta-note reveal">14-day free trial · No credit card · Personal onboarding included · Cancel anytime</p>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="foot-logo">
+          <img src="logo.png" alt="SalonQ" style="height:30px">
+          <span>salon<em>Q</em></span>
+        </div>
+        <p class="foot-desc">India's first AI-powered salon queue management platform. Zero wait for customers. Smarter operations for owners.</p>
+        <div class="foot-contact">
+          📧 <a href="mailto:parameswaran@salonqapp.in">parameswaran@salonqapp.in</a>
+          <br><span style="color:var(--text4);font-size:11px;margin-top:4px;display:block">ZW Technologies Private Limited · Tamil Nadu, India</span>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#how">How it Works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#download">Download App</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>For Salons</h4>
+        <ul>
+          <li><a href="#for-salons">List Your Salon</a></li>
+          <li><a href="#pricing">Owner Plans</a></li>
+          <li><a href="mailto:parameswaran@salonqapp.in">Onboarding</a></li>
+          <li><a href="mailto:parameswaran@salonqapp.in">Enterprise</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="mailto:parameswaran@salonqapp.in">About Us</a></li>
+          <li><a href="mailto:parameswaran@salonqapp.in">Contact</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 <span>ZW Technologies Private Limited</span>. All rights reserved. · salonqapp.in</p>
+      <div class="foot-legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+});
+
+// Mobile nav
+function toggleNav(){
+  const m=document.getElementById('mobNav'),h=document.getElementById('ham');
+  m.classList.toggle('open');
+  const s=h.querySelectorAll('span');
+  if(m.classList.contains('open')){
+    s[0].style.transform='translateY(7px) rotate(45deg)';
+    s[1].style.opacity='0';
+    s[2].style.transform='translateY(-7px) rotate(-45deg)';
+  } else {
+    s[0].style.transform='';s[1].style.opacity='';s[2].style.transform='';
+  }
+}
+
+// FAQ
+function toggleFaq(el){
+  const item=el.parentElement,wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen)item.classList.add('open');
+}
+
+// Pricing toggle
+let isAnnual=false;
+const prices={smart:[299,2490],grow:[599,4990],boss:[699,5790]};
+function toggleBilling(){
+  isAnnual=!isAnnual;
+  document.getElementById('toggleBtn').classList.toggle('on',isAnnual);
+  const period=isAnnual?'/year':'/month';
+  document.getElementById('smart-price').textContent=isAnnual?prices.smart[1]:prices.smart[0];
+  document.getElementById('grow-price').textContent=isAnnual?prices.grow[1]:prices.grow[0];
+  document.getElementById('boss-price').textContent=isAnnual?prices.boss[1]:prices.boss[0];
+  ['smart','grow','boss'].forEach(p=>document.getElementById(p+'-period').textContent=period);
+}
+
+// Scroll reveal
+const revealObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')});
+},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    const h=this.getAttribute('href');
+    if(h==='#')return;
+    const t=document.querySelector(h);
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+</script>
+</body>
+</html>
