@@ -46,17 +46,50 @@ body::before{
   pointer-events:none;z-index:0;opacity:0.4;
 }
 
+/* TOP APP DOWNLOAD BANNER */
+.top-app-banner{
+  background:linear-gradient(90deg,#19112d,#2a1526,#16102b);
+  border-bottom:1px solid rgba(168,126,240,0.25);
+  padding:8px 24px;
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  font-size:13px;font-weight:600;color:var(--muted2);
+  position:relative;z-index:201;
+}
+.top-app-banner strong{color:var(--white);font-weight:700;}
+.top-app-links{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.top-app-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;
+  text-decoration:none;transition:all 0.2s;
+}
+.top-app-btn.consumer-top{
+  background:linear-gradient(135deg,var(--violet),var(--rose));color:white;
+  box-shadow:0 2px 10px rgba(124,79,212,0.3);
+}
+.top-app-btn.consumer-top:hover{transform:translateY(-1px);box-shadow:0 4px 15px rgba(124,79,212,0.5);}
+.top-app-btn.business-top{
+  background:rgba(196,113,58,0.18);color:var(--copper2);
+  border:1px solid rgba(196,113,58,0.35);
+}
+.top-app-btn.business-top:hover{background:rgba(196,113,58,0.3);color:var(--white);}
+
 /* NAV */
 nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
+  position:sticky;top:0;left:0;right:0;z-index:200;
   display:flex;align-items:center;justify-content:space-between;
-  padding:16px 48px;
-  background:rgba(8,6,16,0.8);
+  padding:14px 48px;
+  background:rgba(8,6,16,0.88);
   backdrop-filter:blur(24px);
   border-bottom:1px solid var(--border);
 }
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--white);}
-.nav-logo img{height:34px;border-radius:8px;}
+.nav-logo img{height:36px;width:auto;border-radius:8px;object-fit:contain;}
+.logo-fallback-icon{
+  width:36px;height:36px;border-radius:8px;
+  background:linear-gradient(135deg,var(--violet),var(--rose));
+  display:none;align-items:center;justify-content:center;
+  font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;color:white;
+}
 .nav-logo span{font-family:'Nunito',sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.01em;}
 .nav-logo span em{font-style:normal;color:var(--violet2);}
 .nav-tag{
@@ -64,32 +97,34 @@ nav{
   padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;color:var(--violet2);
   margin-left:4px;
 }
-.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links{display:flex;gap:28px;list-style:none;}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;letter-spacing:0.02em;transition:color 0.2s;}
 .nav-links a:hover{color:var(--white);}
-.nav-right{display:flex;align-items:center;gap:12px;}
-.nav-pill{
-  background:transparent;color:var(--muted2);
-  border:1px solid var(--border);
-  padding:8px 18px;border-radius:100px;font-size:13px;font-weight:500;
-  text-decoration:none;transition:all 0.2s;font-family:'Nunito Sans',sans-serif;
-}
-.nav-pill:hover{border-color:var(--violet2);color:var(--violet2);}
-.nav-cta{
-  background:linear-gradient(135deg,var(--violet),var(--rose));
-  color:white;border:none;padding:9px 22px;border-radius:100px;
-  font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;
-  transition:all 0.2s;font-family:'Nunito Sans',sans-serif;
-  box-shadow:0 4px 20px rgba(124,79,212,0.35);
+.nav-right{display:flex;align-items:center;gap:10px;}
+
+.nav-dl-btn{
   display:inline-flex;align-items:center;gap:6px;
+  padding:8px 16px;border-radius:100px;font-size:12px;font-weight:700;
+  text-decoration:none;transition:all 0.25s;font-family:'Nunito Sans',sans-serif;
 }
-.nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(124,79,212,0.5);}
+.nav-dl-consumer{
+  background:linear-gradient(135deg,var(--violet),var(--rose));
+  color:white;border:none;padding:8px 18px;
+  box-shadow:0 4px 20px rgba(124,79,212,0.35);
+}
+.nav-dl-consumer:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(124,79,212,0.5);}
+
+.nav-dl-business{
+  background:rgba(196,113,58,0.15);border:1px solid rgba(196,113,58,0.35);
+  color:var(--copper2);
+}
+.nav-dl-business:hover{background:rgba(196,113,58,0.3);color:var(--white);transform:translateY(-1px);}
 
 /* HERO */
 .hero{
-  min-height:92vh;
+  min-height:90vh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:130px 48px 80px;
+  padding:100px 48px 80px;
   position:relative;overflow:hidden;
   text-align:center;
 }
@@ -356,7 +391,6 @@ h2.stitle em{font-style:normal;color:var(--rose);}
 
 .b-4{grid-column:span 4;}
 .b-6{grid-column:span 6;}
-.b-8{grid-column:span 8;}
 
 /* HOW IT WORKS */
 .how-section{background:var(--bg);}
@@ -500,16 +534,16 @@ footer{
   nav{padding:14px 24px;}
   nav .nav-links{display:none;}
   section{padding:70px 24px;}
-  .hero{padding:110px 24px 70px;}
+  .hero{padding:90px 24px 70px;}
   .mockup-container{grid-template-columns:1fr;gap:40px;}
   .bento-grid{grid-template-columns:repeat(6,1fr);}
   .b-4{grid-column:span 6;}
   .b-6{grid-column:span 6;}
-  .b-8{grid-column:span 6;}
   .steps-row{grid-template-columns:1fr 1fr;gap:20px;}
   .download-cards-grid{grid-template-columns:1fr;}
   footer{grid-template-columns:1fr 1fr;padding:40px 24px 0;}
   .footer-bottom{padding:20px 24px;flex-direction:column;gap:6px;text-align:center;}
+  .top-app-banner{flex-direction:column;gap:8px;padding:8px 16px;text-align:center;}
 }
 @media(max-width:640px){
   .steps-row{grid-template-columns:1fr;}
@@ -520,10 +554,26 @@ footer{
 </head>
 <body>
 
+<!-- TOP APP DOWNLOAD BANNER -->
+<div class="top-app-banner">
+  <span>📱 <strong>Download SalonQ Apps on Android:</strong></span>
+  <div class="top-app-links">
+    <a class="top-app-btn consumer-top" href="https://play.google.com/store/apps/details?id=com.prms1985.salonq.consumer" target="_blank" rel="noopener">
+      <span>Get Consumer App</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a class="top-app-btn business-top" href="https://play.google.com/store/apps/details?id=com.prms1985.salonq.business" target="_blank" rel="noopener">
+      <span>Get Business App</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="../index.html">
-    <img id="navLogo" src="../Salonq logo.png" alt="SalonQ">
+    <img id="navLogo" src="../logo.png" alt="SalonQ" onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';">
+    <div id="logoFallback" class="logo-fallback-icon">Q</div>
     <span>salon<em>Q</em></span>
     <span class="nav-tag">Consumer</span>
   </a>
@@ -534,10 +584,12 @@ footer{
     <li><a href="../index.html">For Salon Owners</a></li>
   </ul>
   <div class="nav-right">
-    <a class="nav-pill" href="../index.html">Business App</a>
-    <a class="nav-cta" id="navConsumerCta" href="https://play.google.com/store/apps/details?id=com.prms1985.salonq.consumer" target="_blank" rel="noopener">
-      <span>Get App</span>
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <a class="nav-dl-btn nav-dl-consumer" href="https://play.google.com/store/apps/details?id=com.prms1985.salonq.consumer" target="_blank" rel="noopener">
+      <span>Consumer App</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a class="nav-dl-btn nav-dl-business" href="https://play.google.com/store/apps/details?id=com.prms1985.salonq.business" target="_blank" rel="noopener">
+      <span>Business App 📱</span>
     </a>
   </div>
 </nav>
@@ -566,14 +618,19 @@ footer{
         </defs>
       </svg>
       <div class="playstore-text">
-        <span class="playstore-sub">Get it on</span>
+        <span class="playstore-sub">Get Consumer App</span>
         <span class="playstore-title">Google Play</span>
       </div>
     </a>
 
-    <a class="btn-secondary-link" id="heroBusinessAppLink" href="https://play.google.com/store/apps/details?id=com.prms1985.salonq.business" target="_blank" rel="noopener">
-      <span>💈 Salon Owner App</span>
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+    <a class="playstore-btn" id="heroPlayStoreBusinessBtn" href="https://play.google.com/store/apps/details?id=com.prms1985.salonq.business" target="_blank" rel="noopener" style="border-color:rgba(196,113,58,0.4);">
+      <svg class="playstore-icon" viewBox="0 0 512 512" fill="currentColor">
+        <path d="M325.3 234.3L104.6 13l280.8 161.2-59.8 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 59.2-34.1c18-10.3 29.5-29.2 29.5-49.9s-11.5-39.6-29.8-50.9zM104.6 499l220.7-221.3 59.8 60.1L104.6 499z" fill="#e8935a"/>
+      </svg>
+      <div class="playstore-text">
+        <span class="playstore-sub">Get Business App</span>
+        <span class="playstore-title">Google Play</span>
+      </div>
     </a>
   </div>
 
@@ -905,7 +962,7 @@ footer{
 <!-- FOOTER -->
 <footer>
   <div>
-    <div class="fb-logo"><img id="footerLogo" src="../Salonq logo.png" alt="SalonQ"><span>salon<span style="color:var(--violet2)">Q</span></span></div>
+    <div class="fb-logo"><img id="footerLogo" src="../logo.png" alt="SalonQ"><span>salon<span style="color:var(--violet2)">Q</span></span></div>
     <p class="fb-desc">India's first AI-powered smart queue management platform for salons. Skip the wait, save time, and enjoy effortless salon visits.</p>
     <p class="fb-contact">📍 Chennai · Expanding Across India<br>🌐 www.salonqapp.in</p>
   </div>
@@ -932,6 +989,7 @@ footer{
     <ul class="fc-links">
       <li><a href="../privacy.html">Privacy Policy</a></li>
       <li><a href="../terms.html">Terms of Service</a></li>
+      <li><a href="../delete-account.html">Delete Account Request</a></li>
       <li><a href="mailto:parameswaran@salonqapp.in">Support Email</a></li>
       <li><a href="tel:+919884488178">+91 98844 88178</a></li>
     </ul>

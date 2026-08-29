@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="SalonQ — India's first AI-powered smart queue management platform for salons. Eliminate waiting chaos, boost customer satisfaction, and grow salon revenue.">
+<meta name="description" content="SalonQ — India's first AI-powered smart queue management platform for salons. Eliminate waiting chaos, boost customer satisfaction, and grow salon revenue. Download for Android on Google Play.">
 <title>SalonQ — Smart Queue. Happy You.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -45,45 +45,80 @@ body::before{
   pointer-events:none;z-index:0;opacity:0.4;
 }
 
+/* TOP APP DOWNLOAD BANNER */
+.top-app-banner{
+  background:linear-gradient(90deg,#19112d,#2a1526,#16102b);
+  border-bottom:1px solid rgba(196,113,58,0.25);
+  padding:8px 24px;
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  font-size:13px;font-weight:600;color:var(--muted2);
+  position:relative;z-index:201;
+}
+.top-app-banner strong{color:var(--white);font-weight:700;}
+.top-app-links{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.top-app-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;
+  text-decoration:none;transition:all 0.2s;
+}
+.top-app-btn.consumer-top{
+  background:rgba(168,126,240,0.18);color:var(--violet2);
+  border:1px solid rgba(168,126,240,0.35);
+}
+.top-app-btn.consumer-top:hover{background:rgba(168,126,240,0.3);color:var(--white);}
+.top-app-btn.business-top{
+  background:rgba(196,113,58,0.18);color:var(--copper2);
+  border:1px solid rgba(196,113,58,0.35);
+}
+.top-app-btn.business-top:hover{background:rgba(196,113,58,0.3);color:var(--white);}
+
 /* NAV */
 nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
+  position:sticky;top:0;left:0;right:0;z-index:200;
   display:flex;align-items:center;justify-content:space-between;
-  padding:16px 48px;
-  background:rgba(8,6,16,0.85);
+  padding:14px 48px;
+  background:rgba(8,6,16,0.88);
   backdrop-filter:blur(24px);
   border-bottom:1px solid var(--border);
 }
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--white);}
-.nav-logo img{height:34px;border-radius:8px;}
+.nav-logo img{height:36px;width:auto;border-radius:8px;object-fit:contain;}
+.logo-fallback-icon{
+  width:36px;height:36px;border-radius:8px;
+  background:linear-gradient(135deg,var(--copper),var(--violet));
+  display:none;align-items:center;justify-content:center;
+  font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;color:white;
+}
 .nav-logo span{font-family:'Nunito',sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.01em;}
 .nav-logo span em{font-style:normal;color:var(--copper2);}
-.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links{display:flex;gap:28px;list-style:none;}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;letter-spacing:0.02em;transition:color 0.2s;}
 .nav-links a:hover{color:var(--white);}
-.nav-right{display:flex;align-items:center;gap:12px;}
-.nav-pill{
-  background:transparent;color:var(--muted2);
-  border:1px solid var(--border);
-  padding:8px 18px;border-radius:100px;font-size:13px;font-weight:500;
-  text-decoration:none;transition:all 0.2s;font-family:'Nunito Sans',sans-serif;
-}
-.nav-pill:hover{border-color:var(--copper);color:var(--copper2);}
-.nav-cta{
-  background:linear-gradient(135deg,var(--copper),var(--violet));
-  color:white;border:none;padding:9px 22px;border-radius:100px;
-  font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;
-  transition:all 0.2s;font-family:'Nunito Sans',sans-serif;
-  box-shadow:0 4px 20px rgba(196,113,58,0.35);
+.nav-right{display:flex;align-items:center;gap:10px;}
+
+.nav-dl-btn{
   display:inline-flex;align-items:center;gap:6px;
+  padding:8px 16px;border-radius:100px;font-size:12px;font-weight:700;
+  text-decoration:none;transition:all 0.25s;font-family:'Nunito Sans',sans-serif;
 }
-.nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(196,113,58,0.5);}
+.nav-dl-consumer{
+  background:rgba(124,79,212,0.15);border:1px solid rgba(168,126,240,0.35);
+  color:var(--violet2);
+}
+.nav-dl-consumer:hover{background:rgba(124,79,212,0.3);color:var(--white);transform:translateY(-1px);}
+
+.nav-dl-business{
+  background:linear-gradient(135deg,var(--copper),var(--violet));
+  color:white;border:none;padding:8px 18px;
+  box-shadow:0 4px 20px rgba(196,113,58,0.35);
+}
+.nav-dl-business:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(196,113,58,0.5);}
 
 /* HERO */
 .hero{
-  min-height:92vh;
+  min-height:90vh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:130px 48px 80px;
+  padding:100px 48px 80px;
   position:relative;overflow:hidden;
   text-align:center;
 }
@@ -171,14 +206,6 @@ h1.hero-headline .line2{
   display:inline-flex;align-items:center;gap:8px;
 }
 .btn-grad:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(196,113,58,0.45);}
-.btn-outline{
-  background:rgba(255,255,255,0.04);color:var(--white);
-  padding:15px 32px;border-radius:100px;font-size:15px;font-weight:600;
-  text-decoration:none;transition:all 0.3s;
-  border:1px solid rgba(255,255,255,0.12);
-  backdrop-filter:blur(10px);
-}
-.btn-outline:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.25);}
 
 /* HERO STATS ROW */
 .hero-stats{
@@ -549,7 +576,7 @@ footer{
   nav{padding:14px 24px;}
   nav .nav-links{display:none;}
   section{padding:70px 24px;}
-  .hero{padding:100px 24px 70px;}
+  .hero{padding:90px 24px 70px;}
   .bento-grid{grid-template-columns:repeat(6,1fr);}
   .b-4{grid-column:span 6;}
   .b-6{grid-column:span 6;}
@@ -565,15 +592,32 @@ footer{
   footer{grid-template-columns:1fr 1fr;padding:40px 24px 0;}
   .footer-bottom{padding:20px 24px;flex-direction:column;gap:6px;text-align:center;}
   .cta-section{padding:80px 24px;}
+  .top-app-banner{flex-direction:column;gap:8px;padding:8px 16px;text-align:center;}
 }
 </style>
 </head>
 <body>
 
+<!-- TOP APP DOWNLOAD BANNER -->
+<div class="top-app-banner">
+  <span>📱 <strong>Get the SalonQ Apps on Google Play:</strong></span>
+  <div class="top-app-links">
+    <a class="top-app-btn consumer-top" href="https://play.google.com/store/apps/details?id=com.prms1985.salonq.consumer" target="_blank" rel="noopener">
+      <span>Get Consumer App</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a class="top-app-btn business-top" href="https://play.google.com/store/apps/details?id=com.prms1985.salonq.business" target="_blank" rel="noopener">
+      <span>Get Business App</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="index.html">
-    <img id="navLogo" src="Salonq logo.png" alt="SalonQ">
+    <img id="navLogo" src="logo.png" alt="SalonQ" onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';">
+    <div id="logoFallback" class="logo-fallback-icon">Q</div>
     <span>salon<em>Q</em></span>
   </a>
   <ul class="nav-links">
@@ -584,9 +628,13 @@ footer{
     <li><a href="#pricing">Pricing</a></li>
   </ul>
   <div class="nav-right">
-    <a class="nav-pill" href="consumer.html">Consumer App</a>
-    <a class="nav-pill" href="https://play.google.com/store/apps/details?id=com.prms1985.salonq.business" target="_blank" rel="noopener">Business App 📱</a>
-    <a class="nav-cta" href="mailto:parameswaran@salonqapp.in">List Your Salon →</a>
+    <a class="nav-dl-btn nav-dl-consumer" href="https://play.google.com/store/apps/details?id=com.prms1985.salonq.consumer" target="_blank" rel="noopener">
+      <span>Consumer App</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a class="nav-dl-btn nav-dl-business" href="https://play.google.com/store/apps/details?id=com.prms1985.salonq.business" target="_blank" rel="noopener">
+      <span>Business App 📱</span>
+    </a>
   </div>
 </nav>
 
@@ -1028,7 +1076,7 @@ footer{
 <!-- FOOTER -->
 <footer>
   <div>
-    <div class="fb-logo"><img id="footerLogo" src="Salonq logo.png" alt="SalonQ"><span>salon<span style="color:var(--copper2)">Q</span></span></div>
+    <div class="fb-logo"><img id="footerLogo" src="logo.png" alt="SalonQ"><span>salon<span style="color:var(--copper2)">Q</span></span></div>
     <p class="fb-desc">India's first AI-powered smart queue management platform for salons. Reduce wait times, grow revenue, and run a smarter business.</p>
     <p class="fb-contact">📍 Chennai · Expanding Across India<br>🌐 www.salonqapp.in</p>
   </div>
@@ -1049,6 +1097,7 @@ footer{
       <li><a href="https://play.google.com/store/apps/details?id=com.prms1985.salonq.business" target="_blank" rel="noopener">Business App (Google Play)</a></li>
       <li><a href="privacy.html">Privacy Policy</a></li>
       <li><a href="terms.html">Terms of Service</a></li>
+      <li><a href="delete-account.html">Delete Account Request</a></li>
     </ul>
   </div>
   <div>
